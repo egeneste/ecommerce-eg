@@ -11,23 +11,28 @@
     
     <div class="container">
         <header>
-            <div class="header-container">
-                <nav class="navbar">
+            <div class="header-container " id="tete">
+                <nav class="navbar" >
                 
                     <a href="#" class="logo"> <img src="./img/favicon.png" alt=""> Store</a>
                     
+                    <div hidden>
+                        <ul class="navbar-items" >
+                            <li class="navbar-item">
+                                <a href="" class="navbar-item__link">Home</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="" class="navbar-item__link">Products</a>
+                            </li>
+                        </ul>
+                    </div>
                     
-                    <ul class="navbar-items">
-                        <li class="navbar-item">
-                            <a href="" class="navbar-item__link">Home</a>
-                        </li>
-                        <li class="navbar-item">
-                            <a href="" class="navbar-item__link">Products</a>
-                        </li>
-                    </ul>
     
                     <div class="navbar_btn">
-    
+                        <div class="carrito">
+                            <button class="carrito_btn"><img src="./img/bag.svg" alt=""></button>
+                            <p id="quantity">0</p>
+                        </div>
                     </div>
     
                 </nav>
@@ -65,40 +70,66 @@
         <section class="store">
             <div class="items-filters__group">
                 <div class="item__filter">
-                    <h2>Show All</h2>
+                    <button class="all">Show All</button>
                     <p>Show all products</p>
                 </div>
 
                 <div class="item__filter">
-                    <h2>Hoodies</h2>
+                    <button class="hoodies">Hoodies</button>
                     <p>3 products</p>
                 </div>
 
                 <div class="item__filter">
-                    <h2>Shirt</h2>
+                    <button class="shirt">Shirt</button>
                     <p>4 products</p>
                 </div>
 
                 <div class="item__filter">
-                    <h2>Sweatshirts</h2>
+                    <button class="sweatshirt">Sweatshirts</button>
                     <p>4 products</p>
                 </div>
             </div>
 
 
         </section>
-        <section class="ropas">
-            <div class="card">
-                <div class="card-img">
-                    <img src="./img/featured1.png" alt="ft">
-                </div>
-                <div class="card-details">
-                    <p>$14.00 | <span>Stock : 10</span></p>
-                    <p>Hoodies</p>
-                </div>
-            </div>
+        <section class="collection" id="mayo">
+
         </section>
     </div>
+
+    <footer>
+        <div>
+            <h3 class="footer-subtitle">Our information</h3>
+            <p>Toluca - Mexico</p>
+        </div>
+
+        <div>
+            <h3 class="footer-subtitle">Our information</h3>
+            <ul>
+                <li><a href="#">Support Center</a></li>
+                <li><a href="#">Customer Center</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Copy Right</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="footer-subtitle">Product</h3>
+            <ul>
+                <li><a href="#">Hoodies</a></li>
+                <li><a href="#">Shirts</a></li>
+                <li><a href="#">Sweatshirts</a></li>
+                
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="footer-subtitle">Social</h3>
+            <div class="social-icon"></div>
+            <div class="social-icon"></div>
+            <div class="social-icon"></div>
+        </div>
+    </footer>
 
     <script src="app.js">
 
