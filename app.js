@@ -162,10 +162,15 @@ const checkout_items = document.querySelector('.checkout-items')
 const pintarStore = () => {
 
     let mesChemise_html = "" 
+    let total = 0
     for (const [key, value] of Object.entries(miCarrito)) {
         
 
         let machemise = almacen.find(chms => chms.id == key)
+
+        const subtot = machemise.price *  value
+
+        total += subtot
         
         mesChemise_html += `
         
@@ -177,7 +182,7 @@ const pintarStore = () => {
         <div class="articulo_details">
             <p class="title"></p>
             <p>Stock: ${machemise.stock} | <span>$ ${machemise.price}</span></p>
-            <p class="importante">Subtotal: ${machemise.price *  value}</p>
+            <p class="importante">Subtotal: ${subtot}</p>
             
             <div class="add_mayo">
                 <button >+</button>
@@ -193,7 +198,22 @@ const pintarStore = () => {
     
       }
 
+
+      mesChemise_html += `
+      
+        <div class="checkout_sumurise">
+            <p id="total_item">${cart.length}</p>
+            <p class="total_price">$${total}</p>
+        </div>
+
+        <button class="btn_buy">
+            Checkout
+        </button>
+      
+      `
       checkout_items.innerHTML = mesChemise_html
+
+      document.querySelector("#total_item").textContent = cart.length
 }
 
 carrito_btn.addEventListener("click", ()=> {

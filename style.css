@@ -590,6 +590,28 @@ article {
     justify-content: space-evenly;
     align-items: center;
 }
+
+.checkout_sumurise {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2em;
+}
+
+
+.btn_buy {
+    margin-top: 2em;
+    margin-left: 30%;
+    background-color: rgb(252, 243, 243);
+    padding: 1em;
+    font-size: 1.2em;
+    font-weight: 700;
+    border: none;
+}
+
+.btn_buy:hover {
+    background-color: var(--clr-orange);
+}
 @media screen and (min-width: 950px) {
     .container, .header-container {
         width: 60%;
@@ -634,6 +656,7 @@ article {
     
     .checkout {
         width: 30%;
+        height: 100vh;
     }
 
 }
