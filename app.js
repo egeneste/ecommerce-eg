@@ -1,3 +1,4 @@
+
 // Change header background on scroll
 
 const inverted = "inverted";
@@ -124,4 +125,59 @@ mayo.addEventListener('click', (e)=> {
       }, {});
     
     quantity.innerHTML = `${cart.length}`
+
+    console.log(miCarrito);
 })
+
+// Hamburger
+
+const hamburger = document.querySelector('.hamburger')
+const navmenu = document.querySelector('.navbar-items')
+
+hamburger.addEventListener('click', ()=> {
+    navmenu.classList.toggle("hidden")
+})
+
+
+
+// const menulinks = document.querySelector("#menulinks");
+
+// menulinks.addEventListener("click", ()=> {
+//     navmenu.classList.toggle("hidden")
+// })
+
+
+
+//  carrito
+const chariot = document.querySelector("#chariot")
+
+const carrito_btn = document.querySelector(".carrito_btn")
+
+const empty_cart = document.querySelector(".empty-cart")
+
+carrito_btn.addEventListener("click", ()=> {
+    chariot.classList.toggle("hidden")
+    
+    if (cart.length !=0)
+    {
+        empty_cart.style.display = "none";
+        console.log(miCarrito);
+    } 
+
+
+    
+    
+})
+
+const btn_close = document.querySelector(".btn_close")
+
+btn_close.addEventListener("click", ()=> {
+    chariot.classList.toggle("hidden")
+
+})
+
+// checkout
+
+const checkout_items = document.querySelector('.checkout-items')
+
+let html_checkout_items = ""

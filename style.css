@@ -26,6 +26,9 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 
+html {
+    scroll-behavior: smooth;
+}
 body {
 	line-height: 1;
     width: 100vw;
@@ -49,6 +52,12 @@ table {
 
 a {
     text-decoration: none;
+    color: #111;
+}
+
+.logo {
+    display: flex;
+    gap: 1em;
 }
 /*                          Init                        */
 
@@ -123,7 +132,7 @@ nav > a {
     align-items: center;
     justify-content: space-between;
     padding: 0.5em 1em;
-    z-index: 2000;
+    z-index: 20000;
     /* background-color: red; */
     width: 100%;
     box-sizing: border-box;
@@ -132,12 +141,66 @@ nav > a {
  .navbar_btn {
     height: 50px;
     width: 100px;
-    background-color: greenyellow;
+    display: flex;
+    gap: 1em;
+    z-index: 30000;
 }
 
 main {
     position: relative;
 }
+
+.navmenu {
+    position: fixed;
+    /* background-color: red; */
+    z-index: 200;
+    height: 10vh;
+    width: 100vw;
+    top: 0;
+    /* display: none; */
+}
+
+.navbar-items {
+    display: flex;
+    justify-content: center;
+    padding-top: 15em;
+    gap: 2em;
+    background-color: #fff;
+    height: 100vh;
+}
+
+.navbar-item a {
+    color: #222;
+}
+
+.hidden {
+   background-color: green;
+   display: none !important;
+}
+.navbar-item__link {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.navbar-item__link:active{
+    color: red;
+}
+.hamburger {
+    width: 30px;
+    height: 30px;
+}
+
+.hamburger-btn {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.hamburger-btn img{
+    width: 100%;
+    height: 100%;
+}
+
 /* main { */
     
     /* background-color: yellow; */
@@ -387,7 +450,7 @@ footer ul {
     width: 40px;
     height: 40px;
     position: relative;
-    
+    z-index: 0;
 }
 
 .carrito_btn img {
@@ -395,9 +458,10 @@ footer ul {
     height: 100%;
     object-fit: cover;
     
+    
 }
 
-.carrito:hover {
+.carrito_btn:hover {
     cursor: pointer;
 }
 .carrito p {
@@ -414,9 +478,118 @@ footer ul {
     top: 0;
     right: 0;
     
+
+    
 }
 
-@media screen and (min-width: 600px) {
+article {
+    position: relative;
+}
+
+/* checkout style */
+.checkout {
+    /* height: 80vh;
+    width: 80vw; */
+    width: 80%;
+    height: 100vh;
+    /* background-color: rgb(159, 35, 35); */
+    /* position: fixed; */
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 0 auto;
+ 
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+
+    
+
+
+    /* display: none; */
+}
+
+.subtitle {
+    font-size: 2em;
+}
+
+.checkout-title {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+    /* background-color: greenyellow; */
+ 
+    font-weight: 700;
+ 
+}
+
+.checkout-title p{
+    font-weight: 700;
+    font-size: 1.5em;
+}
+.btn_close {
+    background: transparent;
+    border: none;
+    font-size: 1.2em;
+    font-weight: 700;
+    /* align-self: flex-end; */
+    padding: 2em;
+    
+}
+
+.btn_close:hover {
+    cursor: pointer;
+}
+
+.empty-cart {
+    width: 400px;
+}
+
+.empty-cart img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.checkout-items {
+    margin-top: 2em;
+}
+.articulo {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1em;
+    align-items: center;
+    margin-top: 1.5em;
+}
+
+.articulo_img {
+    width: 150px;
+    height: 150px;
+}
+
+.articulo_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.articulo_details {
+    display: flex;
+    flex-direction: column;
+    /* background-color: green; */
+    gap: 1em;
+}
+
+.add_mayo {
+    display: flex;
+    justify-content: space-evenly;
+}
+@media screen and (min-width: 950px) {
     .container, .header-container {
         width: 60%;
         /* margin: 0 auto; */
@@ -458,6 +631,10 @@ footer ul {
         justify-content: space-around;
     }
     
+    .checkout {
+        width: 30%;
+    }
+
 }
 
 
