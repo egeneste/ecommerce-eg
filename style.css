@@ -506,7 +506,7 @@ article {
     align-items: center;
     margin: 0 auto;
 
-    
+    background-color: #fff;
 
 
     /* display: none; */
@@ -588,6 +588,7 @@ article {
 .add_mayo {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
 }
 @media screen and (min-width: 950px) {
     .container, .header-container {

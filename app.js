@@ -126,7 +126,7 @@ mayo.addEventListener('click', (e)=> {
     
     quantity.innerHTML = `${cart.length}`
 
-    console.log(miCarrito);
+    
 })
 
 // Hamburger
@@ -155,13 +155,59 @@ const carrito_btn = document.querySelector(".carrito_btn")
 
 const empty_cart = document.querySelector(".empty-cart")
 
+
+const checkout_items = document.querySelector('.checkout-items')
+
+
+const pintarStore = () => {
+
+    let mesChemise_html = "" 
+    for (const [key, value] of Object.entries(miCarrito)) {
+        
+
+        let machemise = almacen.find(chms => chms.id == key)
+        
+        mesChemise_html += `
+        
+        
+        <div class="articulo">
+        <div class="articulo_img">
+            <img src=${machemise.url} alt="yes">
+        </div>
+        <div class="articulo_details">
+            <p class="title"></p>
+            <p>Stock: ${machemise.stock} | <span>$ ${machemise.price}</span></p>
+            <p class="importante">Subtotal: ${machemise.price *  value}</p>
+            
+            <div class="add_mayo">
+                <button >+</button>
+                <p>${value} Units</p>
+                <button>-</button>
+            </div>
+        </div>
+        
+    </div>
+        
+        
+        `
+    
+      }
+
+      checkout_items.innerHTML = mesChemise_html
+}
+
 carrito_btn.addEventListener("click", ()=> {
     chariot.classList.toggle("hidden")
     
+
     if (cart.length !=0)
     {
+
+        
         empty_cart.style.display = "none";
-        console.log(miCarrito);
+        
+        pintarStore();
+
     } 
 
 
@@ -178,6 +224,3 @@ btn_close.addEventListener("click", ()=> {
 
 // checkout
 
-const checkout_items = document.querySelector('.checkout-items')
-
-let html_checkout_items = ""
