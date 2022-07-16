@@ -359,9 +359,17 @@ document.querySelector('#chk_items').addEventListener("click", (e)=> {
     if (e.target.classList.contains('btn_buy'))
     {
         cart = []
-        console.log(cart, 'eso');
+        console.log(cart, 'eso', collection);
         quantity.innerHTML = `${cart.length}`;
         pintarStore()
+        collection.forEach(elemento => {
+            console.log('ok');
+            elemento.stock -= elemento.temp
+            elemento.temp = 0
+        })
+
+        printCard(collection)
+        
     }
 
 })
