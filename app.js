@@ -22,8 +22,9 @@ const almacen = [
         id : 1,
         name: "Hoodies",
         price: 14.00,
-        stock:10,
-        url: "./img/featured1.png"
+        stock: 4,
+        url: "./img/featured1.png",
+        temp: 0
 
     },
 
@@ -32,7 +33,8 @@ const almacen = [
         name: "Shirt",
         price: 24.00,
         stock:10,
-        url: "./img/featured2.png"
+        url: "./img/featured2.png",
+        temp: 0
 
     },
 
@@ -41,7 +43,8 @@ const almacen = [
         name: "Sweatshirts",
         price: 24.00,
         stock:10,
-        url: "./img/featured3.png"
+        url: "./img/featured3.png",
+        temp: 0
 
     }
 
@@ -57,9 +60,9 @@ const hoodies = document.querySelector(".hoodies")
 const shirt = document.querySelector(".shirt")
 const sweatshirt = document.querySelector(".sweatshirt")
 
-collection.push (almacen[0])
-collection.push (almacen[1])
-collection.push (almacen[2])
+collection.push (...almacen)
+// collection.push (almacen[1])
+// collection.push (almacen[2])
 
 
 let store = document.querySelector(".collection")
@@ -118,13 +121,34 @@ let miCarrito = {}
 
 let quantity = document.querySelector("#quantity")
 mayo.addEventListener('click', (e)=> {
-    cart.push(e.target.dataset.id)
+
+    if (e.target.classList.contains('btnmas')) 
+    {
+        
+        const id_ = e.target.dataset.id;
+        
+
+        let currentItem = collection.find(itm => itm.id == id_)
+
+        if (currentItem.stock > currentItem.temp)
+        {
+            currentItem.temp += 1;
+
+            cart.push(e.target.dataset.id)
+
+        }
+        else 
+        {
+            alert("We do not have enough in stock");
+        }
+
+        
+        quantity.innerHTML = `${cart.length}`
+
+
+        Object.entries
+    }
     
-    miCarrito = cart.reduce((accumulator, value) => {
-        return {...accumulator, [value]: (accumulator[value] || 0) + 1};
-      }, {});
-    
-    quantity.innerHTML = `${cart.length}`
 
     
 })
@@ -138,13 +162,6 @@ hamburger.addEventListener('click', ()=> {
     navmenu.classList.toggle("hidden")
 })
 
-
-
-// const menulinks = document.querySelector("#menulinks");
-
-// menulinks.addEventListener("click", ()=> {
-//     navmenu.classList.toggle("hidden")
-// })
 
 
 
@@ -163,57 +180,79 @@ const pintarStore = () => {
 
     let mesChemise_html = "" 
     let total = 0
-    for (const [key, value] of Object.entries(miCarrito)) {
-        
 
-        let machemise = almacen.find(chms => chms.id == key)
 
-        const subtot = machemise.price *  value
-
-        total += subtot
-        
-        mesChemise_html += `
-        
-        
-        <div class="articulo">
-        <div class="articulo_img">
-            <img src=${machemise.url} alt="yes">
-        </div>
-        <div class="articulo_details">
-            <p class="title"></p>
-            <p>Stock: ${machemise.stock} | <span>$ ${machemise.price}</span></p>
-            <p class="importante">Subtotal: ${subtot}</p>
-            
-            <div class="add_mayo">
-                <button >+</button>
-                <p>${value} Units</p>
-                <button>-</button>
-            </div>
-        </div>
-        
-    </div>
-        
-        
-        `
+    if (cart.length > 0)
+    {
+        miCarrito = cart.reduce((accumulator, value) => {
+            return {...accumulator, [value]: (accumulator[value] || 0) + 1};
+          }, {});
     
-      }
+        for (const [key, value] of Object.entries(miCarrito)) {
+            
+    
+            let {id, name, price, stock, url} = collection.find(chms => chms.id == key)
+    
+            // let currentItem = collection.find(itm => itm.id == id)
+    
+            // currentItem.temp = value
+    
+     
+    
+            const subtotal_ = price *  value
+    
+            total += subtotal_
+            
+            mesChemise_html += `
+            
+            
+            <div class="articulo">
+                <div class="articulo_img">
+                    <img src=${url} alt="yes">
+                </div>
+                <div class="articulo_details">
+                    <p class="title"></p>
+                    <p>Stock: ${stock} | <span>$ ${price}</span></p>
+                    <p class="importante">Subtotal: ${subtotal_}</p>
+                    
+                    <div class="add_mayo">
+                        <button data-id='${id}' class="add">+</button>
+                        <p class="unite" id='${id}'>${value} Units</p>
+                        <button data-id='${id}' class="res">-</button>
+                    </div>
+                </div>
+            </div>
+            
+            
+            `
+        
+          }
+    
+    
+          mesChemise_html += `
+          
+            <div class="checkout_sumurise">
+                <p id="total_item">${cart.length}</p>
+                <p class="total_price">$${total}</p>
+            </div>
+    
+            <button class="btn_buy">
+                Checkout
+            </button>
+          
+          `
 
+          checkout_items.innerHTML = mesChemise_html
 
-      mesChemise_html += `
-      
-        <div class="checkout_sumurise">
-            <p id="total_item">${cart.length}</p>
-            <p class="total_price">$${total}</p>
-        </div>
+    document.querySelector("#total_item").textContent = cart.length
+    }
 
-        <button class="btn_buy">
-            Checkout
-        </button>
-      
-      `
-      checkout_items.innerHTML = mesChemise_html
-
-      document.querySelector("#total_item").textContent = cart.length
+    else {
+        let mesChemise_html = "" 
+        checkout_items.innerHTML = mesChemise_html
+        empty_cart.style.display = "block"
+    }
+    
 }
 
 carrito_btn.addEventListener("click", ()=> {
@@ -244,3 +283,92 @@ btn_close.addEventListener("click", ()=> {
 
 // checkout
 
+const chk_items = document.querySelector('#chk_items')
+
+chk_items.addEventListener("click", (e)=> {
+    
+    
+    if (e.target.classList.contains('add'))
+    {   
+        const id_ = e.target.dataset.id
+        let cantItem = document.getElementById(id_)
+
+        let currentItem = collection.find(itm => itm.id == id_)
+
+        
+
+        if (currentItem.stock > currentItem.temp)
+        {
+            currentItem.temp += 1;
+            cart.push(id_)
+            // letdocument.getElementById(id_).textContent = ` ${currentItem.temp} unit`
+        }
+        else 
+        {
+            alert("We do not have enough in stock");
+        }
+        cantItem.textContent = ` ${currentItem.temp} unit`
+    }
+    else if (e.target.classList.contains('res'))
+    {
+        const id_ = e.target.dataset.id
+        let cantItem = document.getElementById(id_)
+
+        let currentItem = collection.find(itm => itm.id == id_)
+
+        if ( currentItem.temp > 1)
+        {
+            currentItem.temp -= 1;
+            let indx = cart.indexOf(id_)
+            cart.splice(indx, 1)
+            
+            // let cantItm = document.getElementById(id_)
+            // carrito_btn.textContent = currentItem.temp;
+            cantItem.textContent = ` ${currentItem.temp} unit`
+            console.log('minus', cart, cart.length, indx);
+            
+        }
+        else if ( currentItem.temp = 1)
+        {
+            currentItem.temp -= 1;
+            let indx = cart.indexOf(id_)
+            // cart.splice(indx, 1)
+
+            cart = cart.filter(i => i != id_)
+            console.log('mi cart', cart);
+            
+        }
+
+        // cantItem.textContent = ` ${currentItem.temp} unit`
+        console.log(cart.length);
+    }
+
+    quantity.innerHTML = `${cart.length}`
+    
+
+    pintarStore()
+})
+
+
+////// 
+
+document.querySelector('#chk_items').addEventListener("click", (e)=> {
+    console.log(e.target);
+
+    if (e.target.classList.contains('btn_buy'))
+    {
+        cart = []
+        console.log(cart, 'eso');
+        quantity.innerHTML = `${cart.length}`;
+        pintarStore()
+    }
+
+})
+
+
+document.querySelector("#menulinks").addEventListener("click", (e)=> {
+    if (e.target.classList.contains("navbar-item__link"))
+    {
+        navmenu.classList.toggle("hidden")
+    }
+})

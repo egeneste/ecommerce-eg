@@ -58,6 +58,7 @@ a {
 .logo {
     display: flex;
     gap: 1em;
+    cursor: pointer;
 }
 /*                          Init                        */
 
@@ -77,6 +78,7 @@ a {
 :root {
     --clr-light-gray : rgb(235, 235, 245);
     --clr-orange : orangered;
+    --clr-light-gray: #BBBBBB;
 }
 body {
     font-family: 'Roboto', sans-serif;
@@ -85,6 +87,7 @@ body {
 
 .container {
     width: 90vw;
+    min-width: 394px;
     /* background-color: red; */
     margin: 0 auto;
 }
@@ -102,6 +105,7 @@ header {
 
 .header-container {
     width: 90vw;
+    min-width: 394px;
     /* margin: 0 auto; */
     
 }
@@ -314,6 +318,8 @@ h1, h1+p {
 
 }
 
+
+
 .items-filters__group div {
     display: flex;
     flex-direction: column;
@@ -406,6 +412,7 @@ footer {
     gap: 4em;
     justify-content: center;
     padding: 2em;
+    min-width: 394px;
 }
 
 footer div {
@@ -602,8 +609,8 @@ article {
 .btn_buy {
     margin-top: 2em;
     margin-left: 30%;
-    background-color: rgb(252, 243, 243);
-    padding: 1em;
+    background-color: var(--clr-light-gray);
+    padding: 1em 2.5em;
     font-size: 1.2em;
     font-weight: 700;
     border: none;
@@ -612,6 +619,8 @@ article {
 .btn_buy:hover {
     background-color: var(--clr-orange);
 }
+
+
 @media screen and (min-width: 950px) {
     .container, .header-container {
         width: 60%;
@@ -657,6 +666,7 @@ article {
     .checkout {
         width: 30%;
         height: 100vh;
+        
     }
 
 }
