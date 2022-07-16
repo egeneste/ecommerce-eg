@@ -146,7 +146,7 @@ mayo.addEventListener('click', (e)=> {
         quantity.innerHTML = `${cart.length}`
 
 
-        Object.entries
+        pintarStore()
     }
     
 
@@ -184,6 +184,7 @@ const pintarStore = () => {
 
     if (cart.length > 0)
     {
+        empty_cart.style.display = "none";
         miCarrito = cart.reduce((accumulator, value) => {
             return {...accumulator, [value]: (accumulator[value] || 0) + 1};
           }, {});
